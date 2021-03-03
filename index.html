@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Calculator</title>
+</head>
+<body onload="setStorage()">
+
+<div class = "container w-50" style="background-color: orange; border-radius: 25px">
+<div class = "container w-50 " >
+    <br>
+    <br>
+    <!-- Display -->
+    <div class = "row p-1">
+        <input readonly type="text" class = "display-1 cssDisplay" id="display"></input>
+    </div>
+    <!-- 1 Row (C, <-, ^, +) -->
+    <div class = "row p-1">
+        <div class = "col btn btn-outline-warning cssBox" id="clean" onclick="clean()">C</div>
+
+        <div class = "col btn btn-outline-warning cssBox" id="backspace" onclick="backSpace()"><-</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">^</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox" >+</div>
+    </div>
+    <!-- 2 Row (9, 8, 7, -) -->
+    <div class = "row p-1" >
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">9</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">8</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">7</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox" >-</div>
+    </div>
+    <!-- 3 Row (6, 5, 4, *) -->
+    <div class = "row p-1">
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">6</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">5</div>
+
+        <div class = "col btn btnSymbol btnSymbol btn-outline-warning cssBox">4</div>
+
+        <div class = "col btn btnSymbol btnSymbol btn-outline-warning cssBox" >*</div>
+    </div>
+    <!-- 4 Row (3, 2, 1, /) -->
+    <div class = "row p-1">
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">3</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">2</div>
+
+        <div class = "col btn btnSymbol  btn-outline-warning cssBox">1</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox" >/</div>
+    </div>
+    <!-- 5 Row (0, ., 7, (, )) -->
+    <div class = "row p-1">
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">0</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">.</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox">(</div>
+
+        <div class = "col btn btnSymbol btn-outline-warning cssBox" >)</div>
+    </div>
+    <!-- 6 Row (=) -->
+    <div class = "row p-1">
+        <div class = "col btn btn-outline-warning cssBox" onclick="displayHistory()" >
+            <img src="clock.jpg" width="30px" height="30px">
+        </div>
+        <div class = "col btn btn-outline-warning cssBox" id="equalsBtn" onclick="equals()">=</div>
+    </div>
+
+    <br>
+    <br>
+</div>
+</div>
+
+<!-- Popup window -->
+<div id="history" class="popup-window">
+
+    <div class="window-content">
+      <span class="close" onclick="hideHistory()">&times;</span>
+      <div id="history-text"></div>
+    </div>
+  
+</div>
+
+<!-- Optional JavaScript -->
+<script  src="./script.js"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $(".btnSymbol").click(function (e) {
+
+        let number = $(this).html();
+        $("#display").val(function() {
+            return this.value + number;
+        });
+    });
+
+    function setStorage() {
+        let h = [];
+        sessionStorage.history = JSON.stringify(h);
+    };
+
+</script>
+</body>
+</html>
